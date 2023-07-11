@@ -1,7 +1,4 @@
 # bodegas-app
----
-marp: true
----
 
 # Creación del proyecto
 
