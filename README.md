@@ -133,7 +133,3 @@ Nota: Recuerde realizar la importaciones de librerias using
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 ```
-<<<<<<< HEAD
-
-=======
->>>>>>> a88476a902550bdd1e6212d241b3a8441e1943f4
