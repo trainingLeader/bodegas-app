@@ -1,6 +1,4 @@
 # bodegas-app
-
-
 # Creación del proyecto
 
    Cree una Carpeta principal en la cual se crearan los proyectos internos para la generación del WebApi
@@ -77,23 +75,7 @@
 
 # Configuracion de la conexion a Mysql
 
-1. En el archivo Program.cs que se encuentra en el proyecto API pegar el siguiente codigo:
-
-   ```c#
-   builder.Services.AddDbContext<InventarioContext>(options =>
-   {
-       string ? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-       options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-   });
-   ```
-
-   Nota : Se recomienda insertar despues de la linea de codigo:
-
-   ```c#
-   builder.Services.AddControllers();
-   ```
-
-2. En el archivo appsettings.Development.json agregar el parametro ConnectionStrings:
+1. En el archivo appsettings.Development.json agregar el parametro ConnectionStrings:
 
    ```json
    {
@@ -108,3 +90,47 @@
      }
    }
    ```
+
+   
+
+------
+
+# Creando clase de contexto
+
+La clase de contexto se crea en el proyecto Infrastructure/Data. Se recomienda que el nombre de la clase de contexto inicie con el nombre del proyecto. Para el ejemplo **BodegaContext**
+
+```c#
+using Microsoft.EntityFrameworkCore;
+
+namespace Infrastructure.Data;
+
+public class BodegaContext : DbContext
+{
+     public BodegaContext(DbContextOptions<BodegaContext> options) : base(options)
+    {
+    }       
+}
+```
+
+En el archivo Program.cs que se encuentra en el proyecto API pegar el siguiente codigo:
+
+```c#
+builder.Services.AddDbContext<BodegasContext>(options =>
+{
+    string ? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
+```
+
+Nota : Se recomienda insertar despues de la linea de codigo:
+
+```c#
+builder.Services.AddControllers();
+```
+
+Nota: Recuerde realizar la importaciones de librerias using
+
+```c#
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+```
