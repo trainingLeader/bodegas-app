@@ -1,4 +1,5 @@
 # bodegas-app
+
 # Creación del proyecto
 
    Cree una Carpeta principal en la cual se crearan los proyectos internos para la generación del WebApi
@@ -97,16 +98,16 @@
 
 # Creando clase de contexto
 
-La clase de contexto se crea en el proyecto Infrastructure/Data. Se recomienda que el nombre de la clase de contexto inicie con el nombre del proyecto. Para el ejemplo **BodegaContext**
+La clase de contexto se crea en el proyecto Infrastructure/Data. Se recomienda que el nombre de la clase de contexto inicie con el nombre del proyecto. Para el ejemplo **BodegasContext**
 
 ```c#
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data;
 
-public class BodegaContext : DbContext
+public class BodegasContext : DbContext
 {
-     public BodegaContext(DbContextOptions<BodegaContext> options) : base(options)
+     public BodegasContext(DbContextOptions<BodegasContext> options) : base(options)
     {
     }       
 }
