@@ -1,5 +1,6 @@
 # bodegas-app
 
+
 # Creación del proyecto
 
    Cree una Carpeta principal en la cual se crearan los proyectos internos para la generación del WebApi
@@ -47,5 +48,63 @@
   PS D:\projectsNetCore\bodegas> cd .\API\
   PS D:\projectsNetCore\bodegas\API> dotnet add reference ..\Infrastructure\
   ```
+
+
+# Instalaciones Necesarias
+
+1. Instale el paquete de EntityCore ingrese a la url https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/7.0.8
+
+2. Copie el comando 
+
+   ```tex
+   dotnet add package Microsoft.EntityFrameworkCore --version 7.0.8
+   ```
+
+   En la terminal del sistema operativo o en la terminal de visual studio code. El comando se debe ejecutar dentro de la carpeta Infrastructure
+
+3. Instale el paquete de Mysql para configurar la conexion a la base de datos. https://www.nuget.org/packages/Pomelo.EntityFrameworkCore.MySql/7.0.0 Ejecute el siguiente comando desde la terminal de visual studio code.
+
+   ```tex
+   dotnet add package Pomelo.EntityFrameworkCore.MySql --version 7.0.0
+   ```
+
+4. Agregue el paquete EntityFramework al proyecto API. Recuerde que el comando se debe ejecutar desde el folder API.
+
+   ```tex
+   dotnet add package Pomelo.EntityFrameworkCore.MySql --version 7.0.0
    
-   
+   ```
+
+# Configuracion de la conexion a Mysql
+
+1. En el archivo Program.cs que se encuentra en el proyecto API pegar el siguiente codigo:
+
+   ```c#
+   builder.Services.AddDbContext<InventarioContext>(options =>
+   {
+       string ? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+       options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+   });
+   ```
+
+   Nota : Se recomienda insertar despues de la linea de codigo:
+
+   ```c#
+   builder.Services.AddControllers();
+   ```
+
+2. En el archivo appsettings.Development.json agregar el parametro ConnectionStrings:
+
+   ```json
+   {
+     "Logging": {
+       "LogLevel": {
+         "Default": "Information",
+         "Microsoft.AspNetCore": "Warning"
+       }
+     },
+     "ConnectionStrings": {
+       "DefaultConnection":"server=localhost;user=root;password=123456;database=inventariodb"
+     }
+   }
+   ```
