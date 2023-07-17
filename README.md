@@ -133,3 +133,4 @@ Nota: Recuerde realizar la importaciones de librerias using
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 ```
+https://gist.github.com/5aec2c478176d3997119477d0e198d53.git
